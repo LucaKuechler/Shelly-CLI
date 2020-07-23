@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>Home</title>
+<link rel="stylesheet" href="../static/css/home.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+{% endblock %}
+
+
+{% block body %}
+<ul class="shell-container">
+    {% for elem in elements %}
+        <li class="shell-element">
+            <div class="displayBox">
+                <p class="data">
+                    <span class="user">{{elem[0]}}</span>
+                    <span class="seperator">__</span>
+                    <span class="directory">{{elem[1]}}</span>
+                </p>
+
+                <div class="dataInput">
+                    <div class="const">
+                        <img src="{{url_for('static', filename='Images/hacken.png')}}">
+                        <p>&#062;</p>
+                    </div>
+                        
+                    <p class="input">{{elem[2]}}</p>
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+        <li>
+            <div class="inputBox">
+                <p class="data">
+                    <span class="user">@Luca Küchler</span>
+                    <span class="seperator">__</span>
+                    <span class="directory"></span>
+                </p>
+    
+                <div class="dataInput">
+                    <div class="const">
+                        <img src="{{ url_for('static', filename='Images/hacken.png') }}">
+                        <p>&#062;</p>
+                    </div>   
+                    <form>
+                        <input type="text" name="command" id="input">
+                        <button type="submit" id="sub-button" style="display: none;"></button>  
+                    </form>
+
+                    <button id="tab-click" style="display: none;"></button>
+                </div>
+            </div>
+        </li>
+</ul>
+
+
+
+<script src="{{ url_for('static', filename='js/home.js') }}"></script>
+
+{% endblock %}
