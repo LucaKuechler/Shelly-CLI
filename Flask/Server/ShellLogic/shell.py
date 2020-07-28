@@ -15,6 +15,7 @@ class Shell:
     ''' Ruleset '''
     argument_phrase = "#"
     preset_dir_phrase = "%"
+    script = "@"
     #endregion
 
 
@@ -31,7 +32,8 @@ class Shell:
         ''' execution '''
         # global_items = data_list.db_command_list().global_items
         # func_list.func_code().creation_loop(global_items)
-        func_list.func_code().runtime_loop(cur_dir, c_list, s_list)
+        data = func_list.func_code().runtime_loop(cur_dir, c_list, s_list)
+        return data
 
 
 
@@ -41,6 +43,9 @@ class Shell:
             That means it checks if the input is and argument or a preset.
             The first letter of every word (not including the first one) could be an argument preset.
         '''
+        if self.script in self.command_list[0][0]:
+            self.structure_list = ["script"]
+            return self.structure_list
 
         self.structure_list = ["command"]
 
@@ -99,8 +104,8 @@ class Shell:
         if self.command_list != self.error and self.status != False:
             self.structure_list = self.struc()
 
-        self.interpreter(cur_dir, self.get_list(), self.get_struc())
-
+        data = self.interpreter(cur_dir, self.get_list(), self.get_struc())
+        return data
         
         
     #endregion

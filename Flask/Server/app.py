@@ -28,7 +28,7 @@ def enter():
         print(inputData)
         curdir = elements_object.curDir     
         logic.insert_command(curdir, inputData)
-        output = logic.main_loop()
+        output_data = logic.main_loop()
         # li = ["asd", "asd", "asd", "asd"]
         # elements_object.setData(li)
         # elements_object.setData(input_field)
@@ -38,7 +38,7 @@ def enter():
     t1 = time.time()
     total = t1 - t0
     print(f"{total} secconds")
-
+    print(output_data)
     return ("nothing")
 
 

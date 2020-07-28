@@ -1,5 +1,5 @@
 #import everyfolder with a init.py
-from ShellLogic.Functions import basic_func as win
+from ShellLogic.Functions.basic_func import sys_functions
 
 class func_code():
 
@@ -8,7 +8,7 @@ class func_code():
         self.args = []
         self.struc = []
         self.cur_dir = ""
-
+        win = sys_functions()
 
         cd = win.cd()
         md = win.md()
@@ -35,12 +35,14 @@ class func_code():
 
     def check_request(self, command):
         try:
-            self.sys_funcs[command]
+            data = self.sys_funcs[command]
+        
         except:
-            try:
-                self.funcs[command]
-            except:
-                print("eee")
+            print("Wrong")
+            data = None
+
+        return data
+
 
 
     def run_preset_dir(self):
@@ -67,7 +69,8 @@ class func_code():
             else:
                 continue
 
-        self.check_request(command)
+        data = self.check_request(command)
+        return data
 
 
 

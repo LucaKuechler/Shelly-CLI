@@ -38,7 +38,8 @@ class Program(shell.Shell):
         ''' Input will be given to shell. 
             The shell then returns then the output. 
         '''
-        self.prompt.call_shell(self.cur_dir, self.cur_command)
+        data = self.prompt.call_shell(self.cur_dir, self.cur_command)
+        return data
 
 
 

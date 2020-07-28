@@ -6,7 +6,7 @@ inputField.focus();
 
 //submit form when 'Enter' key is pressed
 inputField.addEventListener("keyup", function(event) {
-    if (event.keyCode === 17) {
+    if ((event.keyCode === 17) && (!(event.altKey))) {
 		submit.click();
         return false;
     }
