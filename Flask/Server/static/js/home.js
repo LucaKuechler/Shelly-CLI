@@ -2,11 +2,12 @@ console.log("Javascript loaded")
 
 inputField = document.getElementById("input");
 submit = document.getElementById("tab-click");
+inputField.focus();
 
 //submit form when 'Enter' key is pressed
 inputField.addEventListener("keyup", function(event) {
     if (event.keyCode === 17) {
-        submit.click();
+		submit.click();
         return false;
     }
 });
@@ -25,8 +26,11 @@ $(document).ready(function() {
 			url : '/enter'
 		})
 
-		event.preventDefault();
+		.done(function(data) {
+			window.document.location.href = "http://127.0.0.1:5000";
+		});
 
+		event.preventDefault();
 	});
 
 
@@ -49,7 +53,6 @@ $(document).ready(function() {
 			}
 
 		});
-
 		event.preventDefault();
 	});
 

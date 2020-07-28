@@ -1,0 +1,20 @@
+{
+  "name": "shelly",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Luca Küchler",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^9.1.1"
+  },
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "express": "^4.17.1",
+    "python-shell": "^2.0.1",
+    "url-exist": "^2.0.2"
+  }
+}

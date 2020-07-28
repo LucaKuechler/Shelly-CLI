@@ -1,7 +1,7 @@
 import sqlite3
-from data_script import  db
+from ShellLogic.data_script import db
 import os
-from data_script import  data_list
+from ShellLogic.data_script import data_list
 
 class DB_Commands():
     def __init__(self):
@@ -25,7 +25,7 @@ class DB_Commands():
                 self.connection.commit()
                 self.query.close()
             else:
-                print(name)
+                pass# print(name)
 
         
 
@@ -123,7 +123,6 @@ class DB_Commands():
 
         for item in self.items:
             value = self.check_database(item)
-            print(value)
             if value == 2:
                 pass
             elif value == 1:
@@ -132,7 +131,6 @@ class DB_Commands():
                 self.insert_commands(item)
 
         self.check_exsitens()
-        print(value)
         self.connection.close()
         
 

@@ -1,4 +1,3 @@
-#import db_fastScript
 import os
 
 
@@ -26,7 +25,7 @@ class db_command_list():
         items = os.listdir(path)
         files = []
         for i in items:
-            if "." in i:
+            if ".py" in i:
                 files.append(i)
         return files
 
@@ -36,7 +35,6 @@ class db_command_list():
         ''' take the whole path and return only the last element because 
             this must be the parent folder for the selected file 
         '''
-
         path_li = path.split("\\")
         counter = len(path_li) - 1
         li = path_li[counter]
@@ -55,6 +53,7 @@ class db_command_list():
         files = db_command_list.get_files(path)
         class_section = db_command_list.get_section_name(path)
 
+
         for f in files:     
             class_file = []
             class_file.append(f) #Command-Name
@@ -65,11 +64,13 @@ class db_command_list():
     #endregion
 
 
+
     @classmethod
     def globalize_items(cls, items):
         ''' Add all items to the class variable global_items so that it can be called 
             from everyvery after a instance was created from the main.py file'''
         cls.global_items = items
+
 
 
     #region main loop
@@ -81,18 +82,22 @@ class db_command_list():
         '''
         path = self.path
         main_folders = [x[0] for x in os.walk(path)] 
-        main_folders.pop(0)
+        #main_folders.pop(0)
         items = []
 
         for p in main_folders:
+            if "__pycache__" in p:
+                continue
             item = db_command_list.get_sections(p)
+
+            if len(item) > 0:
+                if "func_list.py" in item[0]:
+                    continue
             items += item
 
         self.items = items
         self.globalize_items(self.items)
 
-        # for x in items:
-        #     print(x)
     #endregion
     
 
