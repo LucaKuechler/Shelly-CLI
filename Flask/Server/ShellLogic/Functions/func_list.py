@@ -36,7 +36,6 @@ class func_code():
 
 
     def check_request(self, command):
-
         try:
             data = self.sys_funcs[command](self.args)
         
@@ -45,9 +44,8 @@ class func_code():
             data = None
 
         return data
-
-        
-
+        # data = self.sys_funcs[command](self.args)
+        # return data
 
 
     def run_preset_dir(self, preset):
