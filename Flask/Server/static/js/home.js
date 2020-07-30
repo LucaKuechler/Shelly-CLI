@@ -34,6 +34,7 @@ $(document).ready(function() {
 	});
 
 
+
 	$('#tab-click').on('click', function (event) {
 		$.ajax({
 			data : {
@@ -44,7 +45,6 @@ $(document).ready(function() {
 		})
 
 		.done(function(data) {
-			console.log("ge")
 			if (data.error) {
 				$('#input').val("error");
 			}

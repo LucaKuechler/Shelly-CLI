@@ -2,7 +2,7 @@ import sys
 import os 
 import time
 from flask import Flask, render_template, request, jsonify, redirect, url_for
-from data import DisplayDataList, InputDataElement
+from data import DisplayDataList
 from ShellLogic import main as backend
 
 
@@ -15,31 +15,38 @@ logic = backend.Program()
 def Constructor():
     # should be loaded on start and everytime something is insterted
     elements = elements_object.getData()
-    return render_template('home.html', elements=elements)
+    try:
+        last_dir = elements[len(elements) - 1][1]
+    except:
+        last_dir = "/" 
+    return render_template('home.html', elements=elements, last_dir = last_dir)
 
 
 
 
 @app.route('/enter', methods=['POST', 'GET'])
 def enter():
-    inputData = request.form['command']
     t0 = time.time()
-    if inputData:
-        print(inputData)
-        curdir = elements_object.curDir     
-        logic.insert_command(curdir, inputData)
-        output_data = logic.main_loop()
-        # li = ["asd", "asd", "asd", "asd"]
-        # elements_object.setData(li)
-        # elements_object.setData(input_field)
-        # input_field = InputDataElement().getData()
-        elements = elements_object.getData()
+    inputData = request.form['command']
 
-    t1 = time.time()
-    total = t1 - t0
-    print(f"{total} secconds")
-    print(output_data)
-    return ("nothing")
+    if inputData:
+        
+        if inputData == "cls":
+            elements_object.clearData()
+
+        else: 
+            curdir = elements_object.curDir
+            logic.insert_command(curdir, inputData)
+            output_data = logic.main_loop()
+            t1 = time.time()
+            total = t1 - t0
+            if total == 0.0:
+                total = 0.01
+            li = [output_data['cur_dir'], inputData, output_data['cur_output'], total]
+            elements_object.setData(li)
+            
+
+    return jsonify({'path' : 'asdf'})
 
 
 

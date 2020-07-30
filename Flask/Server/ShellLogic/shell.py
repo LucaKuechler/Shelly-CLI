@@ -105,6 +105,12 @@ class Shell:
             self.structure_list = self.struc()
 
         data = self.interpreter(cur_dir, self.get_list(), self.get_struc())
+
+        if data == None:
+            data = {
+                "cur_dir" : cur_dir,
+                "cur_output" : "shelly: command was not found" 
+            }
         return data
         
         

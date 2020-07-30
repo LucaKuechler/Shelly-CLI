@@ -1,6 +1,8 @@
 #import everyfolder with a init.py
 from ShellLogic.Functions.basic_func import sys_functions
 
+
+
 class func_code():
 
     def __init__(self):
@@ -8,14 +10,15 @@ class func_code():
         self.args = []
         self.struc = []
         self.cur_dir = ""
-        win = sys_functions()
+        self.win = sys_functions()
+        win = self.win
 
-        cd = win.cd()
-        md = win.md()
+        # cd = win.cd()
+        # md = win.md()
 
         self.sys_funcs = {
-            "cd" : cd,
-            "md" : md
+            "cd" : win.cd,
+            "md" : win.md
         }
 
 
@@ -32,10 +35,10 @@ class func_code():
 
 
 
-
     def check_request(self, command):
+
         try:
-            data = self.sys_funcs[command]
+            data = self.sys_funcs[command](self.args)
         
         except:
             print("Wrong")
@@ -43,13 +46,15 @@ class func_code():
 
         return data
 
+        
 
 
-    def run_preset_dir(self):
+
+    def run_preset_dir(self, preset):
         pass
 
 
-    def run_argument(self):
+    def run_argument(self, argument):
         pass
 
 
@@ -60,15 +65,22 @@ class func_code():
             self.args.append(arg)
         self.cur_dir = cur_dir
         self.struc = s_list
-        
-        for arg in self.args:
-            if arg == "argument":
-                self.run_argument()
-            elif arg == "preset_dir":
-                self.run_preset_dir()
+        counter = 0
+        print(self.args)
+        for x in s_list:
+
+            if x == "argument":
+                self.run_argument(s_list[counter])
+
+            elif x == "preset_dir":
+                self.run_preset_dir(s_list[counter])
+
             else:
                 continue
 
+            counter += 1
+
+        self.win.dir = cur_dir 
         data = self.check_request(command)
         return data
 

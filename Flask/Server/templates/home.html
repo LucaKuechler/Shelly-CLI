@@ -26,6 +26,8 @@
                         
                     <p class="input">{{elem[2]}}</p>
                 </div>
+                <p class="output">{{elem[3]}}</p>
+                <p class="time">{{elem[4]}}</p>
             </div>
         </li>
     {% endfor %}
@@ -34,7 +36,7 @@
                 <p class="data">
                     <span class="user">@Luca Küchler</span>
                     <span class="seperator">__</span>
-                    <span class="directory"></span>
+                    <span id="directory">{{ last_dir }}</span>
                 </p>
     
                 <div class="dataInput">
